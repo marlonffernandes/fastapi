@@ -177,3 +177,8 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+# Ignore macOS files
+.DS_Store
+
+# Ignorar poetry.lock file
+poetry.lock

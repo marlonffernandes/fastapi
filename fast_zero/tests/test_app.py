@@ -1,5 +1,8 @@
 from http import HTTPStatus
 
+# Tests must run independently
+# Testing fake database
+
 
 def test_read_root_should_return_ok_and_hello_world(client):
     response = client.get("/")  # act
@@ -22,4 +25,18 @@ def test_create_user(client):
         "id": 1,
         "username": "testusername",
         "email": "testemail@example.com",
+    }
+
+
+def test_read_users(client):
+    response = client.get("/users/")  # act
+    assert response.status_code == HTTPStatus.OK  # assert
+    assert response.json() == {
+        "users": [
+            {
+                "id": 1,
+                "username": "testusername",
+                "email": "testemail@example.com",
+            }
+        ]
     }

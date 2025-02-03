@@ -26,6 +26,32 @@ def test_create_user(client):
     }  # assert
 
 
+def test_create_user_email_already_registered(client, user):
+    response = client.post(
+        '/users/',
+        json={
+            'username': 'testusername',
+            'email': user.email,
+            'password': 'testpassword',
+        },
+    )  # act
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.json() == {'detail': 'Email already exists'}
+
+
+def test_create_user_username_already_registered(client, user):
+    response = client.post(
+        '/users/',
+        json={
+            'username': user.username,
+            'email': 'testemail@example.com',
+            'password': 'testpassword',
+        },
+    )  # act
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+    assert response.json() == {'detail': 'Username already exists'}
+
+
 def test_read_users(client):
     response = client.get('/users/')  # act
     assert response.status_code == HTTPStatus.OK  # assert

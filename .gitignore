@@ -1,2 +1,5 @@
 .DS_Store
 fast_zero/.tool-versions
+fast_zero/migrations/README
+fast_zero/migrations/script.py.mako
+fast_zero/migrations/versions/f9242c477d81_create_users_table.py
